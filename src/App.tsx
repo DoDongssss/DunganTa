@@ -1,6 +1,8 @@
 import { GuestRoute, ProtectedRoute } from '@/components/auth/ProtectedRoute';
 import AuthPage from '@/pages/auth/authPage';
-import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import AuthCallbackPage from '@/pages/auth/authCallbackPage';
+import {BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import HomePage from './pages/guest/homePage';
 
 function App() {
 
@@ -10,10 +12,12 @@ function App() {
         <Route element={<GuestRoute />}>
           <Route path="/auth" element={<AuthPage />} />
         </Route>
-        <Route element={<ProtectedRoute />}>
-          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-          {/* more protected routes */}
+        <Route path="/auth/callback" element={<AuthCallbackPage />} />
+        <Route path="/home" element={<ProtectedRoute />}>
+          <Route index element={<HomePage />} />
         </Route>
+
+        <Route path="*" element={<Navigate to="/auth" replace />} />
       </Routes>
     </Router>
   )

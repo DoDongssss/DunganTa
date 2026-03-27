@@ -91,10 +91,11 @@ export const useAuthStore = create<AuthStore>()(
       },
 
       /**
-       * Manually set user (used by auth listener)
+       * Manually set user (used by auth listener).
+       * Always sets isAuthenticated in sync so ProtectedRoute never stalls.
        */
       setUser: (user) => {
-        set({ user, isAuthenticated: !!user });
+        set({ user, isAuthenticated: !!user, isLoading: false });
       },
     }),
     {

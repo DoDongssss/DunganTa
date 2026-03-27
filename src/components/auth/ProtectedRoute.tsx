@@ -34,5 +34,5 @@ export function GuestRoute() {
 
   if (isLoading) return null;
 
-  return isAuthenticated ? <Navigate to="/dashboard" replace /> : <Outlet />;
+  return isAuthenticated ? <Navigate to="/home" replace /> : <Outlet />;
 }
